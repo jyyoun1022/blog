@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -28,9 +29,13 @@ public class Board {
     @ColumnDefault("0")
     private int viewCount;//조회수
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)//기본전략
     @JoinColumn(name = "userId")
     private User user;
+
+    @OneToMany(mappedBy = "board",fetch = FetchType.EAGER)
+    //mappedBy 연관관계의 주인이 아닙니다.(fk가 아님)(db에 컬럼을 만들지마세요)
+    private List<Reply> reply;
 
     @CreationTimestamp
     private Timestamp createDate;
