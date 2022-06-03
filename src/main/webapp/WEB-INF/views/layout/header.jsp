@@ -20,7 +20,7 @@
 <body>
 <%--<h1>${principal}</h1>--%>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" href="/blog/">Home</a>
+    <a class="navbar-brand" href="/">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -29,10 +29,10 @@
             <c:when test="${empty principal}">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/blog/user/login">로그인</a>
+                        <a class="nav-link" href="/auth/login">로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/blog/user/join">회원가입</a>
+                        <a class="nav-link" href="/auth/join">회원가입</a>
                     </li>
 
                 </ul>
@@ -43,10 +43,10 @@
                         <a class="nav-link" href="/blog/board/write">글쓰기</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/blog/user/info">회원정보</a>
+                        <a class="nav-link" href="/user/info">회원정보</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/blog/user/logout">로그아웃</a>
+                        <a class="nav-link" href="/logout">로그아웃</a>
                     </li>
 
                 </ul>

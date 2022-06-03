@@ -13,6 +13,7 @@
             <a href="https://github.com/jyyoun1022" class="btn btn-primary">Git hub</a>
     </div>
     </div>
+<%--    <div class="d-flex justify-content-center align-items-center">--%>
     <div class="card m-2" >
         <div class="card-body">
             <h4 class="card-title">codeJ</h4>
@@ -27,6 +28,7 @@
             <a href="https://github.com/jyyoun1022" class="btn btn-primary">Git hub</a>
         </div>
     </div>
+<%--    </div>--%>
 </div>
 
 <%@ include file="layout/footer.jsp"%>
