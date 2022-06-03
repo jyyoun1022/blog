@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class UserApiController {
 
     private final UserService userService;
-    private final HttpSession session;
+//    private final HttpSession session;
 
     @PostMapping("/api/user")
     public ResponseDTO<Integer> save(@RequestBody User user){
@@ -36,4 +36,6 @@ public class UserApiController {
 //        }
 //        return new ResponseDTO<>(HttpStatus.OK,1);
 //    }
+
+
 }
