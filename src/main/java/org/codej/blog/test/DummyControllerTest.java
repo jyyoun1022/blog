@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.codej.blog.model.RoleType;
 import org.codej.blog.model.User;
 import org.codej.blog.repository.UserRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -42,8 +43,17 @@ public class DummyControllerTest {
         user.setEmail(requestUser.getEmail());
 
         userRepository.save(user);
-        return null;
+        return user;
 
+    }
+    @DeleteMapping("/dummy/user/{id}")
+    public String delete(@PathVariable Long id){
+        try {
+            userRepository.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+            return "삭제 실패 ";
+        }
+        return "삭제되었습니다.id = "+id;
     }
 
 
