@@ -33,6 +33,12 @@ public class UserApiController {
 //        }
 //        return new ResponseDTO<>(HttpStatus.OK,1);
 //    }
+    @PutMapping("/user")
+    public ResponseDTO<Integer>update(@RequestBody User user){
+        userService.update(user);
+        return new ResponseDTO<>(HttpStatus.OK.value(), 1);
+    }
+
 
 
 }
