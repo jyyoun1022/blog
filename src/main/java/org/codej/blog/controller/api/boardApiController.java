@@ -10,6 +10,7 @@ import org.codej.blog.service.UserService;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -30,6 +31,12 @@ public class boardApiController {
     public ResponseDTO<Integer> deleteById(@PathVariable Long id){
         boardService.delete(id);
         return new ResponseDTO<>(HttpStatus.OK.value(), 1);
+    }
+
+    @PutMapping("/api/board/{id}")
+    public ResponseDTO<Integer> update(@PathVariable Long id,@RequestBody Board board ){
+        boardService.update(id,board);
+        return new ResponseDTO<>(HttpStatus.OK.value(),1);
     }
 
 }
