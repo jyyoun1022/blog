@@ -24,11 +24,11 @@ public class DummyControllerTest {
     public List<User> userList(){
         return userRepository.findAll();
     }
-    @GetMapping("/dummy/list/page")
-    public List<User> pageList(@PageableDefault(size = 2,sort = "id",direction = Sort.Direction.DESC)Pageable pageable){
+    @GetMapping("/dummy/user")
+    public Page<User> pageList(@PageableDefault(size = 2,sort = "id",direction = Sort.Direction.DESC)Pageable pageable){
         Page<User> users = userRepository.findAll(pageable);
         List<User> user = users.getContent();
-        return user;
+        return users;
     }
     @PutMapping("/dummy/user/{id}")
     public User updateUser(@PathVariable Long id,@RequestBody User requestUser){

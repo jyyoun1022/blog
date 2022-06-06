@@ -7,11 +7,10 @@ import org.codej.blog.model.Board;
 import org.codej.blog.model.User;
 import org.codej.blog.service.BoardService;
 import org.codej.blog.service.UserService;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -24,6 +23,13 @@ public class boardApiController {
     public ResponseDTO<Integer> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetail principalDetail) {
         boardService.write(board,principalDetail.getUser());
         return new ResponseDTO<Integer>(HttpStatus.OK.value(), 1);
+    }
+
+    @DeleteMapping("/api/board/{id}")
+    @Modifying
+    public ResponseDTO<Integer> deleteById(@PathVariable Long id){
+        boardService.delete(id);
+        return new ResponseDTO<>(HttpStatus.OK.value(), 1);
     }
 
 }

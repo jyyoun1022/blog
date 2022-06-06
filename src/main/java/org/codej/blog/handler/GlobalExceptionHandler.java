@@ -1,5 +1,7 @@
 package org.codej.blog.handler;
 
+import org.codej.blog.dto.ResponseDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = IllegalArgumentException.class)//illegalException을 여기서 잡아준다.
-    public String handleArgumentException(IllegalArgumentException e){
-        return "<h1>"+e.getMessage()+"</h1>";
+    public ResponseDTO<String> handleArgumentException(IllegalArgumentException e){
+        return new ResponseDTO<String>(HttpStatus.BAD_REQUEST.value(),e.getMessage());
     }
 }
