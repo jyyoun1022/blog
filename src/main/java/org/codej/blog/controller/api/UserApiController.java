@@ -7,12 +7,16 @@ import org.codej.blog.model.RoleType;
 import org.codej.blog.model.User;
 import org.codej.blog.service.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 
 @RestController
@@ -20,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserApiController {
 
     private final UserService userService;
+    private final AuthenticationManager authenticationManager;
+    private final BCryptPasswordEncoder encoder;
 //    private final HttpSession session;
 
     @PostMapping("/auth/join")
@@ -40,12 +46,13 @@ public class UserApiController {
 //        return new ResponseDTO<>(HttpStatus.OK,1);
 //    }
     @PutMapping("/user")
-    public ResponseDTO<Integer>update(@RequestBody User user, @AuthenticationPrincipal PrincipalDetail principal){
+    public ResponseDTO<Integer>update(@RequestBody User user){
         userService.update(user);
         //여기서는 트랜잭션이 종료되기 떄문에 DB에 값은 변경이 됨.
         //하지만 세션값은 변경되지 않았으므로
-        Authentication authentication = new UsernamePasswordAuthenticationToken(principal,null);
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword() ));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
         return new ResponseDTO<>(HttpStatus.OK.value(), 1);
     }
 

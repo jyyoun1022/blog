@@ -4,10 +4,10 @@
 <%@ include file="../layout/header.jsp"%>
 
     <div class="container">
-        <button class="btn btn-primary" onclick="history.back()">리스트</button>
-        <button class="btn btn-warning" id="btn-update">수정</button>
+        <a class="btn btn-primary" href="/">리스트</a>
         <c:if test="${board.user.id == principal.user.id}">
-        <button class="btn btn-danger" id="btn-delete">삭제</button>
+            <a  href="/board/${board.id}/update" class="btn btn-warning" >수정</a>
+            <button class="btn btn-danger" id="btn-delete">삭제</button>
         </c:if>
         <br/><br/>
         <div>
