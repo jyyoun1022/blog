@@ -1,11 +1,17 @@
 package org.codej.blog.controller.api;
 
 import lombok.RequiredArgsConstructor;
+import org.codej.blog.configuration.auth.PrincipalDetail;
 import org.codej.blog.dto.ResponseDTO;
 import org.codej.blog.model.RoleType;
 import org.codej.blog.model.User;
 import org.codej.blog.service.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -34,8 +40,12 @@ public class UserApiController {
 //        return new ResponseDTO<>(HttpStatus.OK,1);
 //    }
     @PutMapping("/user")
-    public ResponseDTO<Integer>update(@RequestBody User user){
+    public ResponseDTO<Integer>update(@RequestBody User user, @AuthenticationPrincipal PrincipalDetail principal){
         userService.update(user);
+        //여기서는 트랜잭션이 종료되기 떄문에 DB에 값은 변경이 됨.
+        //하지만 세션값은 변경되지 않았으므로
+        Authentication authentication = new UsernamePasswordAuthenticationToken(principal,null);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return new ResponseDTO<>(HttpStatus.OK.value(), 1);
     }
 
