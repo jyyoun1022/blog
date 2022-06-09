@@ -1,39 +1,43 @@
 package org.codej.blog.model;
 
+import lombok.Data;
 
+@Data
 public class KakaoProfile {
 
     public Long id;
-    public String connectedAt;
+    public String connected_at;
     public Properties properties;
-    public KakaoAccount kakaoAccount;
+    public KakaoAccount kakao_account;
 
-    class Properties {
+@Data
+public class Properties {
 
         public String nickname;
-        public String profileImage;
-        public String thumbnailImage;
+        public String profile_image;
+        public String thumbnail_image;
 
     }
+@Data
+public class KakaoAccount {
 
-    class KakaoAccount {
-
-        public Boolean profileNicknameNeedsAgreement;
-        public Boolean profileImageNeedsAgreement;
+        public Boolean profile_nickname_needs_agreement;
+        public Boolean profile_image_needs_agreement;
         public Profile profile;
-        public Boolean hasEmail;
-        public Boolean emailNeedsAgreement;
-        public Boolean isEmailValid;
-        public Boolean isEmailVerified;
+        public Boolean has_email;
+        public Boolean email_needs_agreement;
+        public Boolean is_email_valid;
+        public Boolean is_email_verified;
 
         public String email;
 
-        class Profile {
+        @Data
+        public class Profile {
 
             public String nickname;
-            public String thumbnailImageUrl;
-            public String profileImageUrl;
-            public Boolean isDefaultImage;
+            public String thumbnail_image_url;
+            public String profile_image_url;
+            public Boolean is_default_image;
 
         }
     }
