@@ -13,6 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
+
 
 @Service
 @RequiredArgsConstructor
@@ -44,12 +46,24 @@ public class UserService {
         User findUser = userRepository.findById(user.getId()).orElseThrow(() -> {
             return new IllegalArgumentException("회원 찾기 실패");
         });
-        String rowPassword = user.getPassword();
-        String encPassword = encoder.encode(rowPassword);
-        findUser.setPassword(encPassword);
-        findUser.setEmail(user.getEmail());
+        //Validate 체크 -> oauth에 값이 없으면 수정 가능
+        if(findUser.getOauth() == null || findUser.getOauth().equals("")){
+            String rowPassword = user.getPassword();
+            String encPassword = encoder.encode(rowPassword);
+            findUser.setPassword(encPassword);
+            findUser.setEmail(user.getEmail());
+        }
 
 
 
+
+    }
+    @Transactional(readOnly = true)
+    public User findUser(String username){
+        User user = userRepository.findByUsername(username).orElseGet(() -> {
+            return new User();
+        });
+
+        return user;
     }
 }

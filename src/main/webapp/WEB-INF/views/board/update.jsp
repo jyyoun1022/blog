@@ -9,6 +9,7 @@
             <input value="${board.title}" type="text"  class="form-control" placeholder="Enter Title" id="title">
         </div>
 
+
         <div class="form-group">
             <textarea id="content" cols="30" rows="10" class="form-control summernote" placeholder="Enter Content">${board.content}</textarea>
         </div>

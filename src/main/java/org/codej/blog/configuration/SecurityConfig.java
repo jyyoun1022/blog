@@ -14,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration//빈등록(IOC 관리)
-@EnableWebSecurity//시큐리티 필터가 등록이 된다.
+@EnableWebSecurity//스프링 시큐리티 필터가 스프링 필터체인에 등록됩니다.
 @EnableGlobalMethodSecurity(prePostEnabled = true)//특정 주소로 접근을 하면 권한 및 인증을 미리 체크
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable() //csrf 토큰 비활성화
                 .authorizeRequests()
-                .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/images/**", "/dummy/**")
+                .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/images/**", "/dummy/**","/board/{*}")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

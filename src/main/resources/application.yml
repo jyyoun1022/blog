@@ -37,4 +37,5 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
-
+codej:
+  key: codej1022

@@ -21,7 +21,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;//시퀸스
 
-    @Column(nullable = true,length = 20,unique = true)
+    @Column(nullable = true,length = 100,unique = true)
     private String username;//아이디
 
     @Column(nullable = false,length = 2500)
@@ -36,6 +36,8 @@ public class User {
 
     @CreationTimestamp //시간이 자동 입력
     private Timestamp createDate;
+
+    private String oauth;//카카오,구글
 
 
 }
