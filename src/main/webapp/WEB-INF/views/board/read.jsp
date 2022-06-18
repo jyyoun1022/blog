@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ include file="../layout/header.jsp"%>
 
@@ -35,14 +36,17 @@
         <br/>
         <div class="card">
             <b><div class="card-header">댓글 리스트</div></b>
-            <ul id="comment--box" class="list-group">
-                <li id="comment--1" class="list-group-item d-flex justify-content-between">
-                    <b><div>댓글 내용입니다</div></b>
-                    <div class="d-flex ">
-                        <b><div class="font-italic">작성자 : codeJ &nbsp;</div></b>
-                        <button class="badge btn btn-danger">삭제</button>
-                    </div>
-                </li>
+            <ul id="reply--box" class="list-group">
+                <c:forEach var="reply" items="${board.replys}">
+                    <li id="reply--1" class="list-group-item d-flex justify-content-between">
+                        <b><div>${reply.content}</div></b>
+                        <div class="d-flex ">
+                            <b><div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div></b>
+                            <button class="badge btn btn-danger">삭제</button>
+                        </div>
+                    </li>
+
+                </c:forEach>
             </ul>
         </div>
     </div>

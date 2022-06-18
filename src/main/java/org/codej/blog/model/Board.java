@@ -1,5 +1,6 @@
 package org.codej.blog.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -35,7 +36,8 @@ public class Board {
 
     @OneToMany(mappedBy = "board",fetch = FetchType.EAGER)
     //mappedBy 연관관계의 주인이 아닙니다.(fk가 아님)(db에 컬럼을 만들지마세요)
-    private List<Reply> reply;
+    @JsonIgnoreProperties({"board"})
+    private List<Reply> replys;
 
     @CreationTimestamp
     private Timestamp createDate;
