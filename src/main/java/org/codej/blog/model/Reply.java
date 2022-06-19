@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 @Builder
 @Getter
 @ToString
+@Setter
 public class Reply {
 
     @Id

@@ -2,8 +2,10 @@ package org.codej.blog.service;
 
 import lombok.RequiredArgsConstructor;
 import org.codej.blog.model.Board;
+import org.codej.blog.model.Reply;
 import org.codej.blog.model.User;
 import org.codej.blog.repository.BoardRepository;
+import org.codej.blog.repository.ReplyRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ import java.util.Optional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final ReplyRepository replyRepository;
+
 
     @Transactional
     public void write(Board board, User user){
@@ -55,5 +59,17 @@ public class BoardService {
         board.setContent(requestBoard.getContent());
         //해당 함수에 종료시에 트랜잭션이 종료됩니다.
         //이떄 더티체킹이 발생합니다.(자동 업데이트가 flush)
+    }
+    @Transactional
+    public  void writeReply(User user,Long boardId, Reply requestReply){
+
+        Board board = boardRepository.findById(boardId).orElseThrow(() -> {
+            return new IllegalArgumentException("댓글 쓰기 실패  : 게시글 id를 찾을 수 없습니다.");
+        });
+
+        requestReply.setUser(user);
+        requestReply.setBoard(board);
+
+        replyRepository.save(requestReply);
     }
 }

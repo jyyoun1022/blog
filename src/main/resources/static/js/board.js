@@ -88,14 +88,14 @@ let index = {
     },
     replySave : function (){
         let data ={
-            boardId : $("#boardId").val(),
             content : $("#reply-content").val()
         };
+        let boardId = $("#boardId").val();
         console.log(data);
 
         $.ajax({
             type: "POST",
-            url: `/api/board/${data.boardId}/reply`,
+            url: `/api/board/${boardId}/reply`,
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json"
@@ -104,7 +104,7 @@ let index = {
                 alert("댓글 작성이 실패하였습니다.");
             } else {
                 alert("댓글 작성이 완료되었습니다.");
-                location.href = `/board/${data.boardId}`;
+                location.href = `/board/${boardId}`;
             }
         }).fail(function (error){
 
