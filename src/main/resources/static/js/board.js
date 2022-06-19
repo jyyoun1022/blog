@@ -11,7 +11,10 @@ let index = {
         });
         $("#btn-reply-save").on("click",()=>{
             this.replySave();
+        });$("#btn-reply-Delete").on("click",()=>{
+            this.replyDelete();
         })
+
 
     },
 
@@ -106,6 +109,24 @@ let index = {
             } else {
                 alert("댓글 작성이 완료되었습니다.");
                 location.href = `/board/${data.boardId}`;
+            }
+        }).fail(function (error){
+
+            alert(JSON.stringify(error));
+        });
+    },
+    replyDelete : function (boardId,replyId){
+
+        $.ajax({
+            type: "DELETE",
+            url: `/api/board/${boardId}/reply/${replyId}`,
+            dataType: "json"
+        }).done(function (res) {
+            if(res.status === 500) {
+                alert("댓글 삭제 실패하였습니다.");
+            } else {
+                alert("댓글 삭제가 완료되었습니다.");
+                location.href = `/board/${boardId}`;
             }
         }).fail(function (error){
 

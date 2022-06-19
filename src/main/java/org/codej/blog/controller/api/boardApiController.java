@@ -13,6 +13,7 @@ import org.codej.blog.service.UserService;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.parameters.P;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +49,12 @@ public class boardApiController {
     public ResponseDTO<Integer> replySave(@RequestBody ReplySaveRequestDTO replySaveRequestDTO) {
 
         boardService.writeReply(replySaveRequestDTO);
+        return new ResponseDTO<>(HttpStatus.OK.value(), 1);
+    }
+    @DeleteMapping("/api/board/{boardId}/reply/{replyId}")
+    @Modifying
+    public ResponseDTO<Integer> replyDelete (@PathVariable Long replyId){
+        boardService.replyDelete(replyId);
         return new ResponseDTO<>(HttpStatus.OK.value(), 1);
     }
 

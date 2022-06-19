@@ -84,4 +84,8 @@ public class BoardService {
         replyRepository._Save(replySaveRequestDTO.getUserId(), replySaveRequestDTO.getBoardId(), replySaveRequestDTO.getContent());
 
     }
+    @Transactional
+    public void replyDelete(Long replyId){
+        replyRepository.deleteById(replyId);
+    }
 }
