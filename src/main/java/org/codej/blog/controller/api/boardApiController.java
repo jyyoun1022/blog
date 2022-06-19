@@ -2,6 +2,7 @@ package org.codej.blog.controller.api;
 
 import lombok.RequiredArgsConstructor;
 import org.codej.blog.configuration.auth.PrincipalDetail;
+import org.codej.blog.dto.ReplySaveRequestDTO;
 import org.codej.blog.dto.ResponseDTO;
 import org.codej.blog.model.Board;
 import org.codej.blog.model.Reply;
@@ -42,10 +43,11 @@ public class boardApiController {
         boardService.update(id,board);
         return new ResponseDTO<>(HttpStatus.OK.value(),1);
     }
-    @PostMapping("/api/board/{boardId}/reply")
-    public ResponseDTO<Integer> replySave(@PathVariable Long boardId, @RequestBody Reply reply, @AuthenticationPrincipal PrincipalDetail principalDetail) {
 
-        boardService.writeReply(principalDetail.getUser(),boardId,reply);
+    @PostMapping("/api/board/{boardId}/reply")
+    public ResponseDTO<Integer> replySave(@RequestBody ReplySaveRequestDTO replySaveRequestDTO) {
+
+        boardService.writeReply(replySaveRequestDTO);
         return new ResponseDTO<>(HttpStatus.OK.value(), 1);
     }
 

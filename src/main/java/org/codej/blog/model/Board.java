@@ -34,7 +34,7 @@ public class Board {
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToMany(mappedBy = "board",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "board",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     //mappedBy 연관관계의 주인이 아닙니다.(fk가 아님)(db에 컬럼을 만들지마세요)
     @JsonIgnoreProperties({"board"})
     @OrderBy("id desc")

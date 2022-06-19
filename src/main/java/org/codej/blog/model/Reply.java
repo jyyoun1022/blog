@@ -1,6 +1,7 @@
 package org.codej.blog.model;
 
 import lombok.*;
+import org.codej.blog.dto.ReplySaveRequestDTO;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -32,4 +33,6 @@ public class Reply {
 
     @CreationTimestamp
     private Timestamp createDate;
+
+
 }

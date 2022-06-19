@@ -27,7 +27,7 @@ public class User {
     @Column(nullable = false,length = 2500)
     private String password;//비밀번호
 
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false,length = 50,unique = true)
     private String email;//이메일
 
 //    @ColumnDefault("'user'")

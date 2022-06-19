@@ -32,6 +32,7 @@
         <div class="card">
             <form action="">
                 <input type="hidden" id="boardId" value="${board.id}"/>
+                <input type="hidden" id="userId" value="${principal.user.id}"/>
                 <div class="card-body">
                     <textarea id="reply-content" rows="1" class="form-control"></textarea>
                 </div>
