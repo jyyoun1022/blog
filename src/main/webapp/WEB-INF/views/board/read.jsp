@@ -30,8 +30,15 @@
 
 
         <div class="card">
-                <div class="card-body"><textarea rows="1" class="form-control"></textarea></div>
-                <div class="card-footer"><button class="btn btn-primary">댓글 등록</button></div>
+            <form action="">
+                <input type="hidden" id="boardId" value="${board.id}"/>
+                <div class="card-body" id="reply-content">
+                    <textarea rows="1" class="form-control"></textarea>
+                </div>
+                <div class="card-footer" id="btn-reply-save">
+                    <button class="btn btn-primary">댓글 등록</button>
+                </div>
+            </form>
         </div>
         <br/>
         <div class="card">

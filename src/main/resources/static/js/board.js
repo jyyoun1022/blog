@@ -9,6 +9,9 @@ let index = {
         $("#btn-update").on("click",()=>{
             this.update();
         });
+        $("#btn-reply-save").on("click",()=>{
+            this.replySave();
+        })
 
     },
 
@@ -77,6 +80,31 @@ let index = {
             } else {
                 alert("글 수정이 완료되었습니다.");
                 location.href = "/board/"+id;
+            }
+        }).fail(function (error){
+
+            alert(JSON.stringify(error));
+        });
+    },
+    replySave : function (){
+        let data ={
+            boardId : $("#boardId").val(),
+            content : $("#reply-content").val()
+        };
+        console.log(data);
+
+        $.ajax({
+            type: "POST",
+            url: `/api/board/${data.boardId}/reply`,
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).done(function (res) {
+            if(res.status === 500) {
+                alert("댓글 작성이 실패하였습니다.");
+            } else {
+                alert("댓글 작성이 완료되었습니다.");
+                location.href = `/board/${data.boardId}`;
             }
         }).fail(function (error){
 

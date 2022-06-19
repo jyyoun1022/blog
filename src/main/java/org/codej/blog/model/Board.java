@@ -37,6 +37,7 @@ public class Board {
     @OneToMany(mappedBy = "board",fetch = FetchType.EAGER)
     //mappedBy 연관관계의 주인이 아닙니다.(fk가 아님)(db에 컬럼을 만들지마세요)
     @JsonIgnoreProperties({"board"})
+    @OrderBy("id desc")
     private List<Reply> replys;
 
     @CreationTimestamp
