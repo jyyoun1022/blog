@@ -12,7 +12,10 @@
         </c:if>
         <br/><br/>
         <div>
+            <div class="d-flex justify-content-between">
            <h4> 글 번호 : <span id="id"><i>${board.id}</i></span></h4>
+            <h6>조회수 : ${board.viewCount}</h6>
+            </div>
             <hr/>
            <h4> 작성자 : <span><i>${board.user.username}</i></span></h4>
         </div>

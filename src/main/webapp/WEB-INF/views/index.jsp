@@ -19,7 +19,12 @@
         <div class="card m-2" >
             <div class="card-body">
                 <h4 class="card-title">${board.title}</h4>
-                <a href="/board/${board.id}" class="btn btn-primary">상세보기</a>
+                <div class="d-flex justify-content-between">
+                    <a href="/board/${board.id}" class="btn btn-primary">상세보기</a>
+                    <h6 class="font-italic">조회수 : ${board.viewCount}</h6>
+                </div>
+<%--                <a href="/board/${board.id}" class="btn btn-primary">상세보기</a>--%>
+<%--                <h5 class="">조회수 : ${board.viewCount}</h5>--%>
             </div>
         </div>
     </c:forEach>

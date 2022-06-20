@@ -88,4 +88,9 @@ public class BoardService {
     public void replyDelete(Long replyId){
         replyRepository.deleteById(replyId);
     }
+
+    @Transactional
+    public void updateView(Long boardId){
+        int viewCount = boardRepository.updateView(boardId);
+    }
 }

@@ -36,6 +36,7 @@ public class BoardController {
     @GetMapping("/board/{id}")
     public String read(@PathVariable Long id,Model model){
         Board board = boardService.read(id);
+        boardService.updateView(id);
         model.addAttribute("board",board);
 
         return "/board/read";
